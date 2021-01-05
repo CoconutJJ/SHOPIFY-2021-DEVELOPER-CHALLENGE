@@ -1,0 +1,49 @@
+#+title: Minimum Mentor Set Solutions
+#+author: David Yue
+
+* Introduction
+Below is the pseudo-code for this algorithm. Note that this problem is in P,
+and consequently not NP-complete.
+
+An obstacle you will run into when trying to find a polynomial time reduction
+from 0/1 KNAPSACK is how to encode the weights and values into start and finish
+times, along with their position on the timeline.
+
+* Algorithm
+Input: A list, L of mentor time slots (s,f), start time S and finish time F. 
+Ouput: A set of time slots that form a min cover for L
+
+MinMentorSet(L, S, F):
+
+    Sort L by increasing start time # O(nlogn)
+    
+    Set LeftBound = S
+    
+    Set MaxSlot = NULL
+    
+    MinSet = {}
+    
+    Repeat until L is empty
+        
+        If (s,f) starts before LeftBound, then compare with
+        MaxSlot and update MaxSlot to be the interval with
+        greatest finish time.
+        
+        Else If (s,f) starts after LeftBound but before the finish
+        time for the MaxSlot interval, add the MaxSlot to the
+        MinSet, update MaxSlot to this interval. Update LeftBound 
+        to it's finish time.
+
+
+        Otherwise, return "Impossible"
+        
+    
+    Return MinSet as wanted.
+
+* Running Time Analysis        
+The sorting operation takes up the most time,
+we perform a simple linear operation after this. Thus we have 
+O((nlog n) + n) = O(nlog n)
+
+
+
