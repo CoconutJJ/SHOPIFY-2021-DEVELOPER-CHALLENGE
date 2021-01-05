@@ -42,11 +42,7 @@ def view(path):
     
 @app.route("/add", methods=['POST'])
 def addImage():
-
-    print(request.stream, request.form)
-
-    print(dict(request.files))
-
+    
     if 'file' not in request.files:
 
         return json.dumps({
